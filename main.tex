@@ -66,9 +66,11 @@
 % -- % -- % -- % -- % -- %
 % -- % -- % -- % -- % -- %
 \section*{Specific Aims}
-What are biobanks and how have they been useful? How can we improve the predictive power of polygenic risk scores (PRS)?  
+Polygenic Risk Scores (PRS) are of significant interest to clinical and statistical geneticists for their potential to accurately capture individuals' genetic liability for developing disease. PRS are computed from effect size estimates ($\beta$) in Genome-Wide Association Studies (GWAS) \cite{choi_tutorial_2020}. However, GWAS are subject to significant bias \cite{dudbridge_power_2013} as (1) phenotypic labeling of cases and controls often relies on broad, subjective classifications and (2) the majority of available genomic studies focus on populations with large European ancestry. Therefore, there exists a \textbf{critical need to develop a model of PRS that accounts for these biases in order to improve predictive power and clinical usefulness}.
 
-PRS tutorial \cite{choi_tutorial_2020}.
+GWAS rely on clinical descriptions of phenotypes to distinguish cases from controls. \cite{nicolau_topology_2011}  
+
+Previous work has shown that analysis of diverse, admixed populations improves GWAS detection of complex trait associated alleles \cite{wojcik_genetic_2019}. Additionally, PRS in non-European populations are most often calculated using the same European GWAS data and neglect to account for the distinctions in demographic history that affect the data \cite{x}, for instance: patterns of linkage disequilibrium, natural selection and environmental effects.   
 
 How is phenotype assigned in biobanks? Introduce this as a current shortcoming. Some efforts have been to manually update labels as new clinical insights indicate well-defined cohorts exist within a given phenotype (pediatric oncologist who’s name I don't remember). Yet genotype contains abundance of information that is yet to be leveraged.
 
@@ -76,11 +78,10 @@ Often run into issue with comparing genotypes because disease mutations often re
 
 Recently, the idea of imposing our mechanistic knowledge of disease etiology as an updated prior has been introduced (Paul O’Reilly, PRSice). In this approach, the genotypic space is reduced to the subset of genomic regions implicated in disease. Subsequently, the comparison of genotypic subspaces biases mutations which are present in genomic regions assumed to be more relevant to disease progression. By overrepresenting mutations in genotypic regions of interest, the abundance of non-disease related genotypic differences which conflate analyses are removed. Genomic analyses may be performed which appreciate subtle differences in genotypes which are disease-relevant.
 
-Here we seek to employ genotype to inform and more rigorously characterize phenotype.
-
+We provide a novel approach for improving the predictive power of PRS: $\Psi$PRS (\textit{psi-PRS}) \textbf{P}henotypic \textbf{S}ubtype \textbf{I}nformed \textbf{P}olygenic \textbf{R}isk \textbf{S}cores. First, we employ standard clustering and classification algorithms to identify trait subtypes using whole-genome sequencing resources such as UK BioBank and Mount Sinai BioMe \cite{bycroft_uk_2018}. We cross-validate inferred subtypes with previously identified subtypes (e.g. type 2 diabetes mellitus \cite{li_identification_2015}) and use standard heterogeneity tests for statistical estimates of validity \cite{dahl_robust_2020}. Then, we compute PRS from the relabeled phenotypic subtypes using the gold standard software PRSice \cite{choi_prsice-2_2019}. Our $\Psi$PRS account for unique trait etiologies lost in standard phenotype labeling. We consider subsets of standard cases and controls given different genetic architectures of clinically similar disease states. By constructing PRS for specific phenotypic subtypes instead, we expect improved reliability and predictive power of these scores.
 
 % -- % -- % -- % -- % -- %
-\subsection*{Aim 1. Infer phenotypic subtypes from GWAS data.}
+\subsection*{Aim 1. Develop $\Psi$PRS model for complex diseases.}
 % \inden{2em}   A.1.1: sub aim 1\\
 
 Take given disease phenotype in UKBioBank 500K. Reduce genotype space of WGS by imposing prior knowledge of genomic regions implicated in disease (Paul O’Reilly, PRSice). Cluster remaining genotypic subspace of disease cohort (ML). Compute sub-PRS for each disease cluster.
@@ -90,13 +91,14 @@ Perform for clinically relevant complex diseases (Alzheimer’s, Heart Disease, 
 Validate on additional biobanks (BioMe 50K)
 If can’t separate into meaningful sub-PRS, then used as demonstration that current phenotypic label non-trivial.
 
+We validate our phenotypic subtyping with SNP-level and polygenic heterogeneity tests \cite{dahl_robust_2020}\cite{dahl_reverse_2019}. We also cross-validate with previously identified phenotypic subtypes for traits such as type 2 diabetes mellitus \cite{li_identification_2015}. 
+
 
 % -- % -- % -- % -- % -- %
-\subsection*{Aim 2. Repeat (1) for WGS vs WES.}
+\subsection*{Aim 2. Investigate reduced PRS transferability in diverse populations.}
 Even if can’t separate into meaningful sub-PRS in part (1), comparing WGS vs WES informs how PRS is contingent upon coding vs non-coding regions.
 
-\subsection*{Aim 3. Repeat (1) for tissue-specific samples (consider somatic mutations). Cancer?}
-Even if can’t separate into meaningful sub-PRS in part (1), comparing tissue-specific vs somatic informs how PRS is contingent upon germline vs acquired mutations.
+Repeat (1) for tissue-specific samples (consider somatic mutations). Cancer?Even if can’t separate into meaningful sub-PRS in part (1), comparing tissue-specific vs somatic informs how PRS is contingent upon germline vs acquired mutations.
 
 \subsection*{Impact}
 Use genotypic information and updated prior given mechanistic insight of disease to assign more precise phenotypic labels. Use more precise labels to obtain polygenic risk scores that enhance predictive power.
