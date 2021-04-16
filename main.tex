@@ -1,0 +1,122 @@
+%% For NIH grant application %%
+%% July 2010 %%
+%% Tatsuki Koyama %%
+
+\documentclass[11pt]{article}  %11 or 12 pt
+
+% Packages some may find useful.
+% \usepackage{graphicx,epsf,psfig,pstricks,subfigure,psfrag,rotating}
+
+% New NIH specifications
+% font = Arial, Helvetica, Palatino Linotype, or Georgia typeface
+% font size 11 or larger
+% margin = at least one-half inch
+% Use at least one-half inch margins for all pages.  
+% No information should appear in the margins, including the PI's name and page numbers.
+
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+\usepackage[width=7.0in, height=9.5in, head=0.0in, foot=0.0in, headsep=0.0in]{geometry}
+%% This controls margins.  Can't go over width=7.5in, height=10.0in.  
+%% top-bottom margins = (11-height)/2  left-right margins = (8.5-width)/2
+
+\usepackage{setspace} % useful in changing vertical spacing temporarily.
+
+\usepackage[superscript,biblabel]{cite}
+%\usepackage{natbib} % more control over how references appear within text.
+%\bibpunct{[}{]}{,}{n}{}{} % like so.
+%% use \citep{ref} instead of \cite{ref} in text.
+
+\usepackage{sectsty} % can change font, size of the section headings.  
+\sectionfont      {\fontsize{12pt}{3}\usefont{OT1}{phv}{b}{sc}\selectfont}
+\subsectionfont   {\fontsize{11pt}{3}\usefont{OT1}{phv}{b}{n}\selectfont}
+\subsubsectionfont{\fontsize{11pt}{3}\usefont{OT1}{phv}{m}{n}\selectfont}
+
+%\renewcommand{\thesection}{\Alph{section}} % so that section headings use A B C instead 1 2 3
+%\renewcommand{\baselinestretch}{1}
+
+\renewcommand\refname{\section*{Literature Cited} \vspace{-1em}} 
+%% This changes ``Reference'' to ``Literature Cited''.  
+
+\newcommand{\inden}[1]{\mbox{} \hspace{#1} } % Force horizontal spaces.  
+
+%% NO INDENTATION %%
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+% -- % -- % -- % -- % -- %
+% -- % -- % -- % -- % -- %
+\begin{document}
+\pagestyle{empty}
+
+
+
+
+
+
+
+
+
+
+
+
+% -- % -- % -- % -- % -- %
+% -- % -- % -- % -- % -- %
+\section*{Specific Aims}
+What are biobanks and how have they been useful? How can we improve the predictive power of polygenic risk scores (PRS)?  
+
+PRS tutorial \cite{choi_tutorial_2020}.
+
+How is phenotype assigned in biobanks? Introduce this as a current shortcoming. Some efforts have been to manually update labels as new clinical insights indicate well-defined cohorts exist within a given phenotype (pediatric oncologist who’s name I don't remember). Yet genotype contains abundance of information that is yet to be leveraged.
+
+Often run into issue with comparing genotypes because disease mutations often represent only a small fraction of all mutations. Most mutations are phenotypically silent and are passed between generation. Thus, the most immediate separation by genotype corresponds to ancestry and conceals genotypic differences corresponding to disease. This will often be accounted for through these means.
+
+Recently, the idea of imposing our mechanistic knowledge of disease etiology as an updated prior has been introduced (Paul O’Reilly, PRSice). In this approach, the genotypic space is reduced to the subset of genomic regions implicated in disease. Subsequently, the comparison of genotypic subspaces biases mutations which are present in genomic regions assumed to be more relevant to disease progression. By overrepresenting mutations in genotypic regions of interest, the abundance of non-disease related genotypic differences which conflate analyses are removed. Genomic analyses may be performed which appreciate subtle differences in genotypes which are disease-relevant.
+
+Here we seek to employ genotype to inform and more rigorously characterize phenotype.
+
+
+% -- % -- % -- % -- % -- %
+\subsection*{Aim 1. Infer phenotypic subtypes from GWAS data.}
+% \inden{2em}   A.1.1: sub aim 1\\
+
+Take given disease phenotype in UKBioBank 500K. Reduce genotype space of WGS by imposing prior knowledge of genomic regions implicated in disease (Paul O’Reilly, PRSice). Cluster remaining genotypic subspace of disease cohort (ML). Compute sub-PRS for each disease cluster.
+
+Perform for Height and other genomic standards
+Perform for clinically relevant complex diseases (Alzheimer’s, Heart Disease, Diabetes, Crohn’s/UC)
+Validate on additional biobanks (BioMe 50K)
+If can’t separate into meaningful sub-PRS, then used as demonstration that current phenotypic label non-trivial.
+
+
+% -- % -- % -- % -- % -- %
+\subsection*{Aim 2. Repeat (1) for WGS vs WES.}
+Even if can’t separate into meaningful sub-PRS in part (1), comparing WGS vs WES informs how PRS is contingent upon coding vs non-coding regions.
+
+\subsection*{Aim 3. Repeat (1) for tissue-specific samples (consider somatic mutations). Cancer?}
+Even if can’t separate into meaningful sub-PRS in part (1), comparing tissue-specific vs somatic informs how PRS is contingent upon germline vs acquired mutations.
+
+\subsection*{Impact}
+Use genotypic information and updated prior given mechanistic insight of disease to assign more precise phenotypic labels. Use more precise labels to obtain polygenic risk scores that enhance predictive power.
+
+
+
+
+
+
+
+
+
+
+
+
+% -- % -- % -- % -- % -- %
+\newpage
+\bibliographystyle{unsrt} %unsrt should work, too.  copy myrefstyle.bst in the same directory as the .tex file.
+\bibliography{references.bib} % Or wherever you keep your .bib file.
+
+% -- % -- % -- % -- % -- %
+\end{document}
+
