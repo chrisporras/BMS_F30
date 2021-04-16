@@ -17,7 +17,7 @@
 \renewcommand{\rmdefault}{phv} % Arial
 \renewcommand{\sfdefault}{phv} % Arial
 
-\usepackage[width=7.0in, height=9.5in, head=0.0in, foot=0.0in, headsep=0.0in]{geometry}
+\usepackage[width=7.5in, height=10.0in, head=0.0in, foot=0.0in, headsep=0.0in]{geometry}
 %% This controls margins.  Can't go over width=7.5in, height=10.0in.  
 %% top-bottom margins = (11-height)/2  left-right margins = (8.5-width)/2
 
@@ -32,6 +32,10 @@
 \sectionfont      {\fontsize{12pt}{3}\usefont{OT1}{phv}{b}{sc}\selectfont}
 \subsectionfont   {\fontsize{11pt}{3}\usefont{OT1}{phv}{b}{n}\selectfont}
 \subsubsectionfont{\fontsize{11pt}{3}\usefont{OT1}{phv}{m}{n}\selectfont}
+
+%\usepackage{titlesec}
+%\titleformat{\subsection}[runin]{}{}{}{}[]
+
 
 %\renewcommand{\thesection}{\Alph{section}} % so that section headings use A B C instead 1 2 3
 %\renewcommand{\baselinestretch}{1}
@@ -62,53 +66,26 @@
 
 
 
-
 % -- % -- % -- % -- % -- %
 % -- % -- % -- % -- % -- %
 \section*{Specific Aims}
-Polygenic Risk Scores (PRS) are of significant interest to clinical and statistical geneticists for their potential to accurately capture individuals' genetic liability for developing disease. PRS are computed from effect size estimates ($\beta$) in Genome-Wide Association Studies (GWAS) \cite{choi_tutorial_2020}. However, GWAS are subject to significant bias \cite{dudbridge_power_2013} as (1) phenotypic labeling of cases and controls often relies on broad, subjective classifications and (2) the majority of available genomic studies focus on populations with large European ancestry. Therefore, there exists a \textbf{critical need to develop a model of PRS that accounts for these biases in order to improve predictive power and clinical usefulness}.
+Polygenic Risk Scores (PRS) are of significant interest to clinical and statistical geneticists for their potential to accurately capture individuals' genetic liability for developing disease. PRS are computed from effect size estimates ($\beta$) in Genome-Wide Association Studies (GWAS) \cite{choi_tutorial_2020}. However, GWAS are subject to significant bias \cite{dudbridge_power_2013} as (1) phenotypic labeling of cases and controls often relies on broad, subjective classifications and (2) the majority of available genomic studies focus on populations with large European ancestry. Therefore, there exists a \textbf{critical need to develop a model of PRS that accounts for these biases in order to improve predictive power}.
 
-GWAS rely on clinical descriptions of phenotypes to distinguish cases from controls. \cite{nicolau_topology_2011}  
-
-Previous work has shown that analysis of diverse, admixed populations improves GWAS detection of complex trait associated alleles \cite{wojcik_genetic_2019}. Additionally, PRS in non-European populations are most often calculated using the same European GWAS data and neglect to account for the distinctions in demographic history that affect the data \cite{x}, for instance: patterns of linkage disequilibrium, natural selection and environmental effects.   
-
-How is phenotype assigned in biobanks? Introduce this as a current shortcoming. Some efforts have been to manually update labels as new clinical insights indicate well-defined cohorts exist within a given phenotype (pediatric oncologist who’s name I don't remember). Yet genotype contains abundance of information that is yet to be leveraged.
-
-Often run into issue with comparing genotypes because disease mutations often represent only a small fraction of all mutations. Most mutations are phenotypically silent and are passed between generation. Thus, the most immediate separation by genotype corresponds to ancestry and conceals genotypic differences corresponding to disease. This will often be accounted for through these means.
-
-Recently, the idea of imposing our mechanistic knowledge of disease etiology as an updated prior has been introduced (Paul O’Reilly, PRSice). In this approach, the genotypic space is reduced to the subset of genomic regions implicated in disease. Subsequently, the comparison of genotypic subspaces biases mutations which are present in genomic regions assumed to be more relevant to disease progression. By overrepresenting mutations in genotypic regions of interest, the abundance of non-disease related genotypic differences which conflate analyses are removed. Genomic analyses may be performed which appreciate subtle differences in genotypes which are disease-relevant.
+GWAS rely on clinical descriptions of phenotypes to distinguish cases from controls. However, large-scale genomic analyses have shown that many clinical traits classified as arising from a single etiology may in fact be comprised of multiple subtypes, each with a unique genetic architecture \cite{nicolau_topology_2011}. PRS computed by homogenizing these phenotypic subtypes would fail to accurately explain the variance in phenotype, \textbf{as multiple distinct phenotypes are essentially treated as one}. Additionally, previous work has shown that analysis of diverse, admixed populations improves GWAS detection of complex trait associated alleles \cite{wojcik_genetic_2019}. Additionally, PRS fail to accurately transfer across ancestry groups. PRS in non-European populations are most often calculated using the same European GWAS data and neglect to account for the distinctions in demographic history that affect the data \cite{x}, for instance: patterns of linkage disequilibrium, natural selection and environmental effects. These population genetic factors introduce unique variants that contribute to the development of distinct disease etiologies unaccounted for in standard PRS methods. 
 
 We provide a novel approach for improving the predictive power of PRS: $\Psi$PRS (\textit{psi-PRS}) \textbf{P}henotypic \textbf{S}ubtype \textbf{I}nformed \textbf{P}olygenic \textbf{R}isk \textbf{S}cores. First, we employ standard clustering and classification algorithms to identify trait subtypes using whole-genome sequencing resources such as UK BioBank and Mount Sinai BioMe \cite{bycroft_uk_2018}. We cross-validate inferred subtypes with previously identified subtypes (e.g. type 2 diabetes mellitus \cite{li_identification_2015}) and use standard heterogeneity tests for statistical estimates of validity \cite{dahl_robust_2020}. Then, we compute PRS from the relabeled phenotypic subtypes using the gold standard software PRSice \cite{choi_prsice-2_2019}. Our $\Psi$PRS account for unique trait etiologies lost in standard phenotype labeling. We consider subsets of standard cases and controls given different genetic architectures of clinically similar disease states. By constructing PRS for specific phenotypic subtypes instead, we expect improved reliability and predictive power of these scores.
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 1. Develop $\Psi$PRS model for complex diseases.}
 % \inden{2em}   A.1.1: sub aim 1\\
-
-Take given disease phenotype in UKBioBank 500K. Reduce genotype space of WGS by imposing prior knowledge of genomic regions implicated in disease (Paul O’Reilly, PRSice). Cluster remaining genotypic subspace of disease cohort (ML). Compute sub-PRS for each disease cluster.
-
-Perform for Height and other genomic standards
-Perform for clinically relevant complex diseases (Alzheimer’s, Heart Disease, Diabetes, Crohn’s/UC)
-Validate on additional biobanks (BioMe 50K)
-If can’t separate into meaningful sub-PRS, then used as demonstration that current phenotypic label non-trivial.
-
-We validate our phenotypic subtyping with SNP-level and polygenic heterogeneity tests \cite{dahl_robust_2020}\cite{dahl_reverse_2019}. We also cross-validate with previously identified phenotypic subtypes for traits such as type 2 diabetes mellitus \cite{li_identification_2015}. 
-
+\underline{Subaim 1a.} Identify subtypes of classically studied clinical phenotypes (CAD, CHD, T2DM, Alzheimer's, Schizophrenia) in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 2. Investigate reduced PRS transferability in diverse populations.}
-Even if can’t separate into meaningful sub-PRS in part (1), comparing WGS vs WES informs how PRS is contingent upon coding vs non-coding regions.
-
-Repeat (1) for tissue-specific samples (consider somatic mutations). Cancer?Even if can’t separate into meaningful sub-PRS in part (1), comparing tissue-specific vs somatic informs how PRS is contingent upon germline vs acquired mutations.
+\underline{Subaim 2a.} Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}. \underline{Subaim 2b.} Compute ancestry-specific PRS with data from diverse populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification. 
 
 \subsection*{Impact}
-Use genotypic information and updated prior given mechanistic insight of disease to assign more precise phenotypic labels. Use more precise labels to obtain polygenic risk scores that enhance predictive power.
-
-
-
-
-
-
-
+This proposal will deliver a novel approach for leveraging phenotypic subtypes in computing PRS. $\Psi$PRS considers unique genetic architectures in phenotypic subtypes to improve predictive power of PRS. We propose that missing phenotypic subtypes contribute to the limited transferability of standard PRS. Our work addresses the \textbf{essential need} for PRS to accurately capture genetic liability for diverse populations.         
 
 
 
