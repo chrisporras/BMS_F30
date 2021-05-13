@@ -76,17 +76,75 @@ GWAS rely on clinical descriptions of phenotypes to distinguish cases from contr
 We provide a novel approach for improving the predictive power of PRS: $\Psi$PRS (\textit{psi-PRS}) \textbf{P}henotypic \textbf{S}ubtype \textbf{I}nformed \textbf{P}olygenic \textbf{R}isk \textbf{S}cores. First, we employ standard clustering and classification algorithms to identify trait subtypes using whole-genome sequencing resources such as UK BioBank and Mount Sinai BioMe \cite{bycroft_uk_2018}. We cross-validate inferred subtypes with previously identified subtypes (e.g. type 2 diabetes mellitus \cite{li_identification_2015}) and use standard heterogeneity tests for statistical estimates of validity \cite{dahl_robust_2020}. Then, we compute PRS from the relabeled phenotypic subtypes using the gold standard software PRSice \cite{choi_prsice-2_2019}. Our $\Psi$PRS account for unique trait etiologies lost in standard phenotype labeling. We consider subsets of standard cases and controls given different genetic architectures of clinically similar disease states. By constructing PRS for specific phenotypic subtypes instead, we expect improved reliability and predictive power of these scores.
 
 % -- % -- % -- % -- % -- %
-\subsection*{Aim 1. Develop $\Psi$PRS model for complex diseases.}
+\subsection*{Aim 1. Develop $\Psi$PRS model for complex disease.}
 % \inden{2em}   A.1.1: sub aim 1\\
-\underline{Subaim 1a.} Identify subtypes of classically studied clinical phenotypes (CAD, CHD, T2DM, Alzheimer's, Schizophrenia) in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
+\underline{Subaim 1a.} Identify subtypes of heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
 
 % -- % -- % -- % -- % -- %
-\subsection*{Aim 2. Investigate reduced PRS transferability in diverse populations.}
-\underline{Subaim 2a.} Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}. \underline{Subaim 2b.} Compute ancestry-specific PRS with data from diverse populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification. 
+\subsection*{Aim 2. Investigate reduced PRS transferability in non-European ancestry populations.}
+\underline{Subaim 2a.} Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}. \underline{Subaim 2b.} Compute ancestry-specific PRS with data from multi-ethnic populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification. 
 
 \subsection*{Impact}
 This proposal will deliver a novel approach for leveraging phenotypic subtypes in computing PRS. $\Psi$PRS considers unique genetic architectures in phenotypic subtypes to improve predictive power of PRS. We propose that missing phenotypic subtypes contribute to the limited transferability of standard PRS. Our work addresses the \textbf{essential need} for PRS to accurately capture genetic liability for diverse populations.         
 
+%-----%
+\newpage
+\section*{Research Strategy}
+
+\subsection*{Significance}
+
+\subsection*{Approach}
+
+\textbf{\textit{Background.}}
+
+% -- % -- % -- % -- % -- %
+\subsection*{Aim 1. Develop $\Psi$PRS model for complex disease.}
+
+\indent \textbf{\textit{Rationale.}}
+
+\indent \textbf{\textit{Preliminary Data.}}
+
+\indent \textbf{\textit{Methods.}}
+
+\indent \underline{Subaim 1a.} Identify subtypes of heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. 
+
+\indent \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. 
+
+\indent \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
+
+\indent \textbf{\textit{Benchmarking and expected outcomes.}}
+
+
+\indent \textbf{\textit{Anticipated problems and alternative approaches.}}
+
+% -- % -- % -- % -- % -- %
+\subsection*{Aim 2. Investigate reduced PRS transferability in non-European ancestry populations.}
+
+\indent \textbf{\textit{Rationale.}}
+
+\indent \textbf{\textit{Preliminary Data.}}
+
+\indent \textbf{\textit{Methods.}}
+
+
+
+
+
+
+\indent \underline{Subaim 2a.} Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}.
+
+\indent \underline{Subaim 2b.} Compute ancestry-specific PRS with data from multi-ethnic populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification. 
+
+\indent \textbf{\textit{Benchmarking and expected outcomes.}}
+
+
+\indent \textbf{\textit{Anticipated problems and alternative approaches.}}
+
+
+\textbf{\textit{Proposed timeline.}}
+
+
+%-----%
 
 
 
