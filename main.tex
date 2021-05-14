@@ -94,21 +94,35 @@ This proposal will deliver a novel approach for leveraging phenotypic subtypes i
 \section*{Research Strategy}
 
 \subsection*{Significance}
+% [1] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7016826/
+% [2] https://jamanetwork.com/journals/jama/fullarticle/195451
+% [3] https://www.ahajournals.org/doi/10.1161/01.RES.0000129254.25507.d6?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub++0pubmed&
+% [4] https://pubmed.ncbi.nlm.nih.gov/30007560/
+% [5] https://pubmed.ncbi.nlm.nih.gov/30788622/
+
+
+% [A] https://www.pnas.org/content/108/17/7265
+% [B] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2995704/
+% [C] https://journal.chestnet.org/article/S0012-3692(18)30164-8/fulltext
+% [D] https://pubmed.ncbi.nlm.nih.gov/19744292/
+% [E] https://link.springer.com/article/10.1007/s10741-019-09828-8
+% [F] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5870132/
+
+
+
 Improving Polygenic Risk Scores (PRS) will have a widespread impact on biomedical research and personalized medicine. Genome-Wide Association Studies (GWAS) have elucidated the genetic bases for numerous complex diseases. Countless associations have been made between genotypes and phenotypes of interest to researchers and clinicians. GWAS report summary statistics including effect size estimates ($\beta$) for implicated variants and phenotypes of interest. PRS aim to capture an individual's genetic liability for disease based on these GWAS effect size estimates. Predicting individual disease risk from genetic information provides a powerful opportunity to design personalized treatment plans and robust preventative care. Assessing genetic risk for various conditions enables early monitoring which in many cases can prove invaluable long before disease manifestation. However, before broad clinical adoption of PRS is attainable, researchers must ensure high predictive accuracy and usability across populations of diverse genetic ancestry.
 
-PRS have recently shown significant utility in predicting cardiovascular disease risk \cite{sun_polygenic_2021}. Additionally, several recent trials of PRS have assessed their usefulness in clinical settings, particularly for coronary artery disease (CAD) and other forms of cardiovascular disease \cite{levin_michael_g_polygenic_2020}.
+PRS have recently shown significant utility in predicting cardiovascular disease risk \cite{sun_polygenic_2021}. Additionally, several recent trials of PRS have assessed their usefulness in clinical settings, particularly for coronary artery disease (CAD) and heart failure \cite{levin_michael_g_polygenic_2020}. Heart failure is the top cause of hospitalization across the globe \cite{simmonds_cellular_2020}. Clinically, heart failure is stratified according to a patient’s left ventricular ejection fraction (EF). Heart failure with ejection fraction of less than 40\% is termed HFrEF (heart failure with reduced ejection fraction), while heart failure with ejection fraction greater than 50\% is termed HFpEF (heart failure with preserved ejection fraction). Epidemiologically, HFrEF incidence has steadily declined in the US while HFpEF incidence continues to rise \cite{tsao_temporal_2018}.
+HFrEF and HFpEF are thought to arise from different pathophysiological mechanisms \cite{kitzman_pathophysiological_2002}. HFrEF is closely associated with coronary artery disease (CAD). CAD is thought to cause ischemia in cardiomyocyte and therefore provides a mechanistic account of the reduced ejection fraction observed clinically in HFrEF. The mechanistic understanding of HFrEF has better enabled identification of risk factors, motivated therapeutic development, and informed chronic care management \cite{kass_david_a_what_2004}. 
+While the clinical classification of heart failure according to its ejection fraction has improved management of HFrEF, the HFpEF class seems to be much more heterogeneous \cite{kass_david_a_what_2004}. Whereas HFrEF is closely associated with CAD, HFpEF is more broadly associated with chronic disease such as obesity, hypertension, type 2 diabetes mellitus, and renal insufficiency \cite{ergatoudes_non-cardiac_2019}. A better understanding of risk factors and mechanisms underlying HFpEF remains an important initiative of public health.
+The generation of massive clinical datasets, such as the repositories of clinical genomic information (e.g. UK BioBank and Mount Sinai BioMe), has demanded the generation of new computational approaches for analyses. Such analyses can leverage rich patterns in high-dimensional spaces to reveal biological insights \cite{nicolau_topology_2011-1}. In the case of genomic repositories, one major consideration involves the resolution of phenotype classifications, or clinical labels assigned to each sample. 
 
-%% MORE INFO ABOUT HEART FAILURE/CARDIO PROBLEMS%%
+Phenotype classifications in GWAS and PRS calculation rely on clinical labels from health records. There exist several common standardized labeling systems for phenotypes in genomic data, with the most common being from the International Statistical Classification of Diseases and Related Health Problems (ICD). ICD is important for standardizing diagnoses in epidemiologic analyses and billing \cite{steindel_international_2010}. ICD-10 is the 10th version of the ICD and the version currently used for clinical and research purposes. While the classification schemes provided by the ICD are often used clinically, their role in research has been contested \cite{weiner_point_2018, cox_good_2009}. In the case of HFpEF, referred to as “diastolic heart failure” in ICD-10-CM, the scheme biases what may be a heterogenous group of diseases arising through independent pathophysiological mechanisms \cite{severino_structural_2020}. When performing genomic analyses such as polygenic risk scores, classification of a disease is confounded when the disease label includes multiple mechanisms. This could be one explanation for the lack of genotypic correlations identified with HFpEF relative to HFrEF \cite{andersson_association_2018}.
+To address the potential for multiple heart failure sub-types being encompassed within the ICD-10-CM label of “diastolic heart failure”, we propose to perform unsupervised clustering of HFpEF classified patients according to single nucleotide polymorphisms (SNPs) in whole genome sequences. We will then calculate polygenic risk scores of these individual clusters, or assumed HFpEF sub-types, and compare them to polygenic risk scores calculated for the entire group of HFpEF patients. By introducing a clustering step we aim to isolate subtypes of HFpEF that lead to more predictive polygenic risk scores than those performed across the entire HFpEF classification.
+
 
 Despite great promise for PRS as clinical screening tools, standard PRS are subject to significant bias and have limited reliability across populations of differing ancestries \cite{majara_low_2021}. This is predominantly a consequence of the missing diversity in human genetic studies \cite{sirugo_missing_2019}. The majority of genetic association studies of disease rely on data collected from populations of European ancestry. With such a limited representation of global human genetic diversity, GWAS and PRS are largely underpowered to capture risk variants that are unique to non-European populations. Several approaches to improving PRS transferability have been developed. Some involve statistical approaches to generalizing PRS constructed from European data using data from non-European and admixed populations \cite{grinde_generalizing_2019}. Other approaches involve computing PRS directly from non-European populations \cite{martin_critical_2018}. With many validated by incorporating additional data from non-European populations directly \cite{cavazos_inclusion_2021}. In order to optimize the utility of PRS, genetic studies of disease must consider contributions from populations of diverse genetic ancestry. 
 In our aims, we propose to develop the $\Psi$PRS model to improve the predictive power of PRS by maximally leveraging classification methods to identify phenotypic subtypes of disease and computing PRS with these subtypes. This approach addresses the heterogeneity in disease that leads to similar phenotypes with different underlying genetic etiologies being classified as a single phenotype. We also propose to investigate reduced PRS transferability in populations of diverse ancestry by assessing differences in population structure and phenotype genetic architecture that can influence PRS. 
-
-
-
-
-
-
-
 
 
 
@@ -122,11 +136,7 @@ $$
 \hat{S} = \sum_{i=1}^{N} \beta_i X_i
 $$
 
-Where each individual has $N$ marker variants, or variants found to be associated with the trait, genotypes for the specified trait with each genotype denoted as $X_i$ and effect size $\beta_i$. This standard genome-wide PRS assumes independent, additive contributions of variants to an individual's genetic risk for the trait. Diseases with multiple variable genetic etiologies i.e. subtypes which arise from unique sets of risk variants, are merged into a single set of effect sizes.
-
-Phenotype classifications in GWAS and PRS calculation rely on clinical labels from health records. There exist several common standardized labeling systems for phenotypes in genomic data, with the most common being from the International Statistical Classification of Diseases and Related Health Problems (ICD). ICD-10 is the 10th version of the ICD and is currently used to categorize and classify standard clinical phenotypes. 
-
-%% More info about ICD10 %%
+Where each individual has $N$ marker variants, or variants found to be associated with the trait, genotypes for the specified trait with each genotype denoted as $X_i$ and effect size $\beta_i$. This standard genome-wide PRS assumes independent, additive contributions of variants to an individual's genetic risk for the trait. Diseases with multiple variable genetic etiologies i.e. subtypes which arise from unique sets of risk variants, are merged into a single set of effect sizes. Our analyses will expand upon the standard PRS calculation and incorporate data with ICD-10 labeled phenotypes. 
 
 \textbf{\textit{The UK Biobank}} is a biomedical database that contains genetic and Electronic Health Record (EHR) data from 500 million UK volunteers. It contains whole exome sequencing from nearly 50k volunteers along with rich phenotype data including nearly 6000 participants with reported heart failure. It is the largest publicly available genetic and phenotypic database in the world \cite{sudlow_uk_2015}. The resource will be invaluable in developing and validating methods to improve PRS predictive power via phenotype subtyping.
 
@@ -190,7 +200,7 @@ We also impose sets of causal variants for a simulated trait of interest $y$. Fo
 % -- % -- % -- % -- % -- %
 \newpage
 \bibliographystyle{unsrt} %unsrt should work, too.  copy myrefstyle.bst in the same directory as the .tex file.
-\bibliography{references.bib} % Or wherever you keep your .bib file.
+\bibliography{references_zotero.bib, references.bib} % Or wherever you keep your .bib file.
 
 % -- % -- % -- % -- % -- %
 \end{document}
