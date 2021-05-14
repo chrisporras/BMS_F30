@@ -132,8 +132,6 @@ Phenotype classifications in GWAS and PRS calculation rely on clinical labels fr
 
 \textbf{\textit{The Mount Sinai Bio\texit{Me} Biobank}} is one of the most diverse EHR-linked genetic data collections in the world \cite{belbin_toward_2021}. It includes information from more than 50k participants and nearly 30k of those include genotype and whole exome sequencing. Participants volunteer from the nearly 2 million patients served by Mount Sinai in New York City. The resource represents significant ethnic, clinical and socioeconomic diversity that will be invaluable in assessing the transferability of PRS across diverse populations.   
 
-%% UKBiobank
-%% BioMe
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 1. Develop $\Psi$PRS model for complex disease.}
@@ -144,12 +142,19 @@ Phenotype classifications in GWAS and PRS calculation rely on clinical labels fr
 
 \indent \textbf{\textit{Methods.}}
 
-\indent \underline{Subaim 1a.} Identify subtypes of cardiovascular disease and heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. 
+\indent \underline{Subaim 1a.} \textit{Identify subtypes of cardiovascular disease and heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms.}
 
-\indent \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. 
-%%expand upon these papers methods
+\indent \underline{Subaim 1b.} \textit{Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015} \cite{mordi_differential_2019}.} We use statistical methods to improve phenotype subtype inference and eliminate false positives. Regression methods including Multiple Traits with a Finite Mixture of Regressions (MFMR) \cite{dahl_reverse_2019} are used in subtype classification at the SNP and polygenic levels. MFMR considers a linear combination of covariate effects and discrete subtypes as contributions to a single quantitative trait $y_i$ for an individual $i$. We can model this combination as:
 
-\indent \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
+$$
+y_i = X_i \alpha + \gamma_{z_i} + g_i \beta_{z_i} + \epsilon
+$$
+
+Genetic information in the form of principal components and any other covariates of interest are captured in $X_i$ with effect sizes $\alpha$. $z_i \in \{1,...,K\}$ specifies the subtype for an individual and is parametrized by $K$. $\gamma_{z_i}$ represents subtype effects on trait. $\beta$ captures subtype specific effect sizes from focal covariate $g$. $\epsilon$ is i.i.d Gaussian error term with mean zero. The MFMR multiple regression models traits for each individual as a function of trait heterogeneity from subtypes. In practice, we fit MFMR with an Expectation-Maximization algorithm and train with a range of $K$ specified possible subtypes for out trait of interest. We test MFMR with known cardiovascular disease subtypes \cite{mordi_differential_2019} and assess explained phenotypic variance $R^2$.  
+
+%%expand upon these papers methods%%
+
+\indent \underline{Subaim 1c.} \textit{Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.}
 
 \indent \textbf{\textit{Benchmarking and expected outcomes.}}
 
@@ -157,23 +162,18 @@ Phenotype classifications in GWAS and PRS calculation rely on clinical labels fr
 \indent \textbf{\textit{Anticipated problems and alternative approaches.}}
 
 % -- % -- % -- % -- % -- %
-%% ancestry 
+%% ancestry %%
 \subsection*{Aim 2. Investigate reduced PRS transferability in non-European ancestry populations.}
 
-\indent \textbf{\textit{Rationale.}}
+\indent \textbf{\textit{Rationale.}} Most human genetic studies consider only European ancestry populations and as a result, most PRS constructed from genetic studies fail to accurately predict disease risk in non-European populations \cite{wojcik_genetic_2019}. This reduction in PRS transferability is a result of differences in population structure and in the underlying genetic etiologies of diseases of interest. Population geneticists refer to population structure as the combination of genetic variation, evolutionary processes including natural selection, mutation, recombination and differing demographic histories of distinct populations. Several complex diseases have been found to have statistically significant sub-classifications, but ICD-10 labeling fails to capture distinct etiologies in many cases \cite{???}. It is likely that some disease genetic etiologies may be more common in some non-European populations than in European populations. In these situations, European-derived PRS may accurately capture genetic contributions to disease along one etiology but not along others. Therefore, PRS that consider the underlying mechanisms of population structure and heterogeneity in disease genetic etiology will more accurately explain phenotypic variance and improve transferability.         
 
-\indent \textbf{\textit{Preliminary Data.}}
+%%\indent \textbf{\textit{Preliminary Data.}}%%
 
-\indent \textbf{\textit{Methods.}}
+\indent \textbf{\textit{Methods.}} 
 
+\indent \underline{Subaim 2a.} \textit{Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}.} 
 
-
-
-
-
-\indent \underline{Subaim 2a.} Model multi-way admixture of global sub-populations using simulations in standard \textbf{SLiM} population genetic software \cite{haller_slim_2019} and genotypes from the 1000 Genomes Project reference panels \cite{noauthor_global_2015}.
-
-\indent \underline{Subaim 2b.} Compute ancestry-specific PRS with data from multi-ethnic populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification. 
+\indent \underline{Subaim 2b.} \textit{Compute ancestry-specific PRS with data from multi-ethnic populations in model along with Mount Sinai BioMe and UK BioBank to investigate causes of reduced transferability: differences in associated variant frequencies across populations, missing effects of population-specific rare variants and discrepancies in phenotype classification.} 
 
 \indent \textbf{\textit{Benchmarking and expected outcomes.}}
 
