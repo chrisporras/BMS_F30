@@ -73,12 +73,14 @@ Polygenic Risk Scores (PRS) are of significant interest to clinical and statisti
 
 GWAS rely on clinical descriptions of phenotypes to distinguish cases from controls. However, large-scale genomic analyses have shown that many clinical traits classified as arising from a single etiology may in fact be comprised of multiple subtypes, each with a unique genetic architecture \cite{nicolau_topology_2011}. PRS computed by homogenizing these phenotypic subtypes would fail to accurately explain the variance in phenotype, \textbf{as multiple distinct phenotypes are essentially treated as one}. Additionally, previous work has shown that analysis of diverse, admixed populations improves GWAS detection of complex trait associated alleles \cite{wojcik_genetic_2019}. Additionally, PRS fail to accurately transfer across ancestry groups. PRS in non-European populations are most often calculated using the same European GWAS data and neglect to account for the distinctions in demographic history that affect the data \cite{x}, for instance: patterns of linkage disequilibrium, natural selection and environmental effects. These population genetic factors introduce unique variants that contribute to the development of distinct disease etiologies unaccounted for in standard PRS methods. 
 
-We provide a novel approach for improving the predictive power of PRS: $\Psi$PRS (\textit{psi-PRS}) \textbf{P}henotypic \textbf{S}ubtype \textbf{I}nformed \textbf{P}olygenic \textbf{R}isk \textbf{S}cores. First, we employ standard clustering and classification algorithms to identify trait subtypes using whole-genome sequencing resources such as UK BioBank and Mount Sinai BioMe \cite{bycroft_uk_2018}. We cross-validate inferred subtypes with previously identified subtypes (e.g. type 2 diabetes mellitus \cite{li_identification_2015}) and use standard heterogeneity tests for statistical estimates of validity \cite{dahl_robust_2020}. Then, we compute PRS from the relabeled phenotypic subtypes using the gold standard software PRSice \cite{choi_prsice-2_2019}. Our $\Psi$PRS account for unique trait etiologies lost in standard phenotype labeling. We consider subsets of standard cases and controls given different genetic architectures of clinically similar disease states. By constructing PRS for specific phenotypic subtypes instead, we expect improved reliability and predictive power of these scores.
+We provide a novel approach for improving the predictive power of PRS: $\Psi$PRS (\textit{psi-PRS}) \textbf{P}henotypic \textbf{S}ubtype \textbf{I}nformed \textbf{P}olygenic \textbf{R}isk \textbf{S}cores. First, we employ standard clustering and classification algorithms to identify trait subtypes using whole-genome sequencing resources such as UK BioBank and Mount Sinai BioMe \cite{bycroft_uk_2018}. We cross-validate inferred subtypes with previously identified subtypes (e.g. cardiovascular disease) and use standard heterogeneity tests for statistical estimates of validity \cite{dahl_robust_2020}. Then, we compute PRS from the relabeled phenotypic subtypes using the gold standard software PRSice \cite{choi_prsice-2_2019}. Our $\Psi$PRS account for unique trait etiologies lost in standard phenotype labeling. We consider subsets of standard cases and controls given different genetic architectures of clinically similar disease states. 
+
+\textbf{\textit{Hypothesis.}} By constructing PRS for specific phenotypic subtypes instead, we expect improved predictive power of these scores and improved transferability of scores across diverse populations with significant non-European ancestry.
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 1. Develop $\Psi$PRS model for complex disease.}
 % \inden{2em}   A.1.1: sub aim 1\\
-\underline{Subaim 1a.} Identify subtypes of heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
+\underline{Subaim 1a.} Identify subtypes of cardiovascular disease and heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 2. Investigate reduced PRS transferability in non-European ancestry populations.}
@@ -92,10 +94,46 @@ This proposal will deliver a novel approach for leveraging phenotypic subtypes i
 \section*{Research Strategy}
 
 \subsection*{Significance}
+Improving Polygenic Risk Scores (PRS) will have a widespread impact on biomedical research and personalized medicine. Genome-Wide Association Studies (GWAS) have elucidated the genetic bases for numerous complex diseases. Countless associations have been made between genotypes and phenotypes of interest to researchers and clinicians. GWAS report summary statistics including effect size estimates ($\beta$) for implicated variants and phenotypes of interest. PRS aim to capture an individual's genetic liability for disease based on these GWAS effect size estimates. Predicting individual disease risk from genetic information provides a powerful opportunity to design personalized treatment plans and robust preventative care. Assessing genetic risk for various conditions enables early monitoring which in many cases can prove invaluable long before disease manifestation. However, before broad clinical adoption of PRS is attainable, researchers must ensure high predictive accuracy and usability across populations of diverse genetic ancestry.
+
+PRS have recently shown significant utility in predicting cardiovascular disease risk \cite{sun_polygenic_2021}. Additionally, several recent trials of PRS have assessed their usefulness in clinical settings, particularly for coronary artery disease (CAD) and other forms of cardiovascular disease \cite{levin_michael_g_polygenic_2020}.
+
+%% MORE INFO ABOUT HEART FAILURE/CARDIO PROBLEMS%%
+
+Despite great promise for PRS as clinical screening tools, standard PRS are subject to significant bias and have limited reliability across populations of differing ancestries \cite{majara_low_2021}. This is predominantly a consequence of the missing diversity in human genetic studies \cite{sirugo_missing_2019}. The majority of genetic association studies of disease rely on data collected from populations of European ancestry. With such a limited representation of global human genetic diversity, GWAS and PRS are largely underpowered to capture risk variants that are unique to non-European populations. Several approaches to improving PRS transferability have been developed. Some involve statistical approaches to generalizing PRS constructed from European data using data from non-European and admixed populations \cite{grinde_generalizing_2019}. Other approaches involve computing PRS directly from non-European populations \cite{martin_critical_2018}. With many validated by incorporating additional data from non-European populations directly \cite{cavazos_inclusion_2021}. In order to optimize the utility of PRS, genetic studies of disease must consider contributions from populations of diverse genetic ancestry. 
+In our aims, we propose to develop the $\Psi$PRS model to improve the predictive power of PRS by maximally leveraging classification methods to identify phenotypic subtypes of disease and computing PRS with these subtypes. This approach addresses the heterogeneity in disease that leads to similar phenotypes with different underlying genetic etiologies being classified as a single phenotype. We also propose to investigate reduced PRS transferability in populations of diverse ancestry by assessing differences in population structure and phenotype genetic architecture that can influence PRS. 
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection*{Approach}
 
-\textbf{\textit{Background.}}
+\textbf{\textit{Background.}} Standard PRS are calculated as a sum of an individual's genotyped variants weighted by the GWAS effect size estimates for a given trait \cite{choi_tutorial_2020}. An estimated PRS for an individual $\hat{S}$ is computed as:
+
+$$
+\hat{S} = \sum_{i=1}^{N} \beta_i X_i
+$$
+
+Where each individual has $N$ marker variants, or variants found to be associated with the trait, genotypes for the specified trait with each genotype denoted as $X_i$ and effect size $\beta_i$. This standard genome-wide PRS assumes independent, additive contributions of variants to an individual's genetic risk for the trait. Diseases with multiple variable genetic etiologies i.e. subtypes which arise from unique sets of risk variants, are merged into a single set of effect sizes.
+
+Phenotype classifications in GWAS and PRS calculation rely on clinical labels from health records. There exist several common standardized labeling systems for phenotypes in genomic data, with the most common being from the International Statistical Classification of Diseases and Related Health Problems (ICD). ICD-10 is the 10th version of the ICD and is currently used to categorize and classify standard clinical phenotypes. 
+
+%% More info about ICD10 %%
+
+\textbf{\textit{The UK Biobank}} is a biomedical database that contains genetic and Electronic Health Record (EHR) data from 500 million UK volunteers. It contains whole exome sequencing from nearly 50k volunteers along with rich phenotype data including nearly 6000 participants with reported heart failure. It is the largest publicly available genetic and phenotypic database in the world \cite{sudlow_uk_2015}. The resource will be invaluable in developing and validating methods to improve PRS predictive power via phenotype subtyping.
+
+\textbf{\textit{The Mount Sinai Bio\texit{Me} Biobank}} is one of the most diverse EHR-linked genetic data collections in the world \cite{belbin_toward_2021}. It includes information from more than 50k participants and nearly 30k of those include genotype and whole exome sequencing. Participants volunteer from the nearly 2 million patients served by Mount Sinai in New York City. The resource represents significant ethnic, clinical and socioeconomic diversity that will be invaluable in assessing the transferability of PRS across diverse populations.   
+
+%% UKBiobank
+%% BioMe
 
 % -- % -- % -- % -- % -- %
 \subsection*{Aim 1. Develop $\Psi$PRS model for complex disease.}
@@ -106,9 +144,10 @@ This proposal will deliver a novel approach for leveraging phenotypic subtypes i
 
 \indent \textbf{\textit{Methods.}}
 
-\indent \underline{Subaim 1a.} Identify subtypes of heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. 
+\indent \underline{Subaim 1a.} Identify subtypes of cardiovascular disease and heart failure phenotypes in UK BioBank and Mount Sinai BioMe using standard clustering and classification algorithms. 
 
 \indent \underline{Subaim 1b.} Validate inferred phenotypic subtypes using SNP-level \cite{dahl_reverse_2019} and polygenic heterogeneity tests \cite{dahl_robust_2020} as well as using known sub-classifications of individual complex traits \cite{li_identification_2015}. 
+%%expand upon these papers methods
 
 \indent \underline{Subaim 1c.} Compare $\Psi$PRS explained phenotypic variance to standard genome-wide PRS.
 
@@ -118,6 +157,7 @@ This proposal will deliver a novel approach for leveraging phenotypic subtypes i
 \indent \textbf{\textit{Anticipated problems and alternative approaches.}}
 
 % -- % -- % -- % -- % -- %
+%% ancestry 
 \subsection*{Aim 2. Investigate reduced PRS transferability in non-European ancestry populations.}
 
 \indent \textbf{\textit{Rationale.}}
